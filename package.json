@@ -1,0 +1,37 @@
+{
+  "name": "namste_react",
+  "version": "1.0.0",
+  "description": "This my forst react project",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pradeepkumar101506/react-basic.git"
+  },
+  "keywords": [
+    "react",
+    "basic",
+    "react"
+  ],
+  "author": "Pradeep Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pradeepkumar101506/react-basic/issues"
+  },
+  "homepage": "https://github.com/pradeepkumar101506/react-basic#readme",
+  "devDependencies": {
+    "parcel": "^2.15.2"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router": "^6.23.1",
+    "react-router-dom": "^6.23.1"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}

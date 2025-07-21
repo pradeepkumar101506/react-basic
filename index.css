@@ -1,7 +1,153 @@
-#heading{
-    color: red;
+.app {
+    background-color: whitesmoke;
 }
 
-.my-heading {
-    background-color: yellow;
+.header {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid;
+}
+
+.logo {
+    width: 120px;
+    mix-blend-mode: multiply;
+}
+
+.nav-items {
+    padding: 0px 90px;
+}
+
+.nav-items>ul {
+    display: flex;
+    font-size: 24px;
+    list-style-type: none;
+}
+
+.nav-items>ul>li {
+    padding: 10;
+    margin: 10px;
+}
+
+.search {
+    padding: 10px;
+}
+
+.res-conatiner {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.res-card {
+    margin: 6px;
+    padding: 5px;
+    width: 278px;
+    height: 400px;
+
+}
+
+.res-link-card {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.res-card:hover {
+    border: 1px solid;
+    cursor: pointer;
+}
+
+.res-logo {
+    width: 100%;
+    height: 200px;
+}
+
+.filter {
+    display: flex;
+}
+
+.filter-btn {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.search-restaurant {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-input {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.search-input>input {
+    width: 400px;
+    height: 30px;
+    border: 1px gray;
+    border-radius: 20px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.search-input>input::placeholder {
+    color: gray;
+    font-style: italic;
+}
+
+.simmer-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.simmer-card {
+    width: 278px;
+    height: 400px;
+    margin: 6px;
+    padding: 5px;
+    background-color: gray;
+    background: linear-gradient(to right,
+            #e0e1e0 0%,
+            #f5f5f5 50%,
+            #e0e0e0 100%);
+    animation: shimmer 1.5s infinite;
+}
+
+.login {
+    padding: 0px 20px;
+    cursor: pointer;
+}
+
+.search-btn {
+    height: 33px;
+    border-radius: 20px;
+    background-color: aquamarine;
+    padding: 6px;
+    margin-left: 10px;
+}
+
+
+.nav-item {
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+}
+
+.nav-item.active {
+    font-weight: bold;
+    color: blue;
+    text-decoration: underline;
+}
+
+.user-card {
+    width: 250px;
+    height: 300px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+    box-shadow: #2cb52c 0px 0px 10px;
+}
+
+.about {
+    display: flex;
 }
