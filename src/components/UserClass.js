@@ -28,15 +28,15 @@ class UserClass extends React.Component {
     const { name } = this.props;
     const { avatar_url, login, url } = this.state.user;
     return (
-      <div className="user-card">
-        <h2>Name: {name}</h2>
+      <div className="m-4 p-4 bg-gray-100 rounded-lg w-100 h-50 hover:border">
+        <h2 className="font-semibold">Name: {name}</h2>
         <img
+          className="h-12 w-12 rounded-full mb-2"
           src={avatar_url}
           alt={name}
-          style={{ height: "50px", width: "50px" }}
         />
         <p>Login: {login}</p>
-        <p style={{ wordWrap: "break-word" }}>Url: {url}</p>
+        <p className="word-wrap">Url: {url}</p>
       </div>
     );
   }

@@ -1,4 +1,7 @@
-.app {
+@import "tailwindcss";
+
+
+/* .app {
     background-color: whitesmoke;
 }
 
@@ -133,6 +136,8 @@
     color: black;
 }
 
+
+
 .nav-item.active {
     font-weight: bold;
     color: blue;
@@ -151,3 +156,19 @@
 .about {
     display: flex;
 }
+
+.online {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: green;
+    margin-top: 5px;
+}
+
+.offline {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    margin-top: 5px;
+} */

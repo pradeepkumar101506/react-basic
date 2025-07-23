@@ -1,29 +1,31 @@
 import RestaurantCrad from "./RestaurantCrad";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useFetchRestaurants from "../utils/useFetchRestaurants";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurant, setlistOfRestaurant] = useState([]);
   const [filtredRestaurantList, setFiltredRestaurantList] = useState([]);
   const [searchText, setSearcText] = useState("");
-
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9083215&lng=77.6050777&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    const resautantList =
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    setlistOfRestaurant(resautantList);
-    setFiltredRestaurantList(resautantList);
-  };
+  const restaurants = useFetchRestaurants();
+  const isOnline = useOnlineStatus();
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (restaurants?.length) {
+      setlistOfRestaurant(restaurants);
+      setFiltredRestaurantList(restaurants);
+    }
+    if (!isOnline) {
+      alert(
+        "Looks like you are offline. Please check your internet connection."
+      );
+      setlistOfRestaurant([]);
+      setFiltredRestaurantList([]);
+    }
+  }, [isOnline, restaurants]);
 
   useEffect(() => {
     const handelScroll = () => {
@@ -41,12 +43,15 @@ const Body = () => {
   return listOfRestaurant?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="search-restaurant">
-        <div className="filter">
-          <div>
+    <div className="p-1 m-1">
+      <div className="flex items-center">
+        <div className="flex items-center w-full p-2 m-2">
+          <div className="mr-2">
             <button
-              className="filter-btn"
+              className="px-4 py-2 rounded-lg font-bold shadow-md text-white"
+              style={{
+                background: "linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%)",
+              }}
               onClick={() => {
                 const filteredList = listOfRestaurant?.filter(
                   (res) => res.info.avgRating > 4
@@ -59,37 +64,19 @@ const Body = () => {
           </div>
           <div>
             <button
-              className="filter-btn"
+              className="px-4 py-2 rounded-lg font-semibold bg-gray-100 hover:bg-gray-200 text-gray-800"
               onClick={() => setFiltredRestaurantList(listOfRestaurant)}
             >
-              All Restuarnts
+              All Restaurants
             </button>
           </div>
         </div>
-        <div className="search-input">
-          {/* <input
-            type="text"
-            id="searchBox"
-            placeholder="Search"
-            onChange={(event) => {
-              const searchText = event?.target?.value?.trim();
-
-              if (searchText?.length > 3) {
-                const filteredList = listOfRestaurant.filter((res) =>
-                  res.info.name
-                    .toLocaleLowerCase()
-                    .includes(searchText.toLocaleLowerCase(), 0)
-                );
-                setlistOfRestaurant(filteredList);
-              } else {
-                setlistOfRestaurant(restautntList);
-              }
-            }}
-          /> */}
+        <div className="flex items-center gap-2 ml-4">
           <input
             type="text"
             placeholder="Search"
             value={searchText}
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-300"
             onChange={(e) => {
               setSearcText(e.target.value);
               if (e?.target?.value?.length === 0) {
@@ -99,7 +86,7 @@ const Body = () => {
           />
           <button
             id="searchBtn"
-            className="search-btn"
+            className="px-4 py-2 rounded-lg font-semibold bg-orange-400 hover:bg-orange-500 text-white"
             onClick={() => {
               const filteredList = listOfRestaurant.filter((res) =>
                 res.info.name
@@ -113,10 +100,10 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="res-conatiner">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
         {filtredRestaurantList.map((resObj) => (
           <Link
-            className="res-link-card"
+            className="text-decoration-none color-inherit"
             to={"/restaurants/" + resObj?.info?.id}
             key={resObj?.info?.id}
           >
