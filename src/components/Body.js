@@ -1,4 +1,4 @@
-import RestaurantCrad from "./RestaurantCrad";
+import RestaurantCrad, { withVegLabel } from "./RestaurantCrad";
 
 import { use, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
@@ -13,10 +13,14 @@ const Body = () => {
   const restaurants = useFetchRestaurants();
   const isOnline = useOnlineStatus();
 
+  const RestaurantCradWithVegLabel = withVegLabel(RestaurantCrad);
+
   useEffect(() => {
     if (restaurants?.length) {
       setlistOfRestaurant(restaurants);
       setFiltredRestaurantList(restaurants);
+      // console.log(restaurants);
+      // info.veg = true
     }
     if (!isOnline) {
       alert(
@@ -107,7 +111,11 @@ const Body = () => {
             to={"/restaurants/" + resObj?.info?.id}
             key={resObj?.info?.id}
           >
-            <RestaurantCrad resData={resObj} />
+            {resObj?.info?.veg ? (
+              <RestaurantCradWithVegLabel resData={resObj} />
+            ) : (
+              <RestaurantCrad resData={resObj} />
+            )}
           </Link>
         ))}
       </div>

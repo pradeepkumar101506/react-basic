@@ -22,4 +22,21 @@ const RestaurantCrad = (props) => {
   );
 };
 
+// Higher Order Component to add Veg label
+// This component will wrap the RestaurantCrad and add a Veg label on top
+
+export const withVegLabel = (RestaurantCrad) => {
+  return (props) => {
+    return (
+      <div className="relative">
+        <div className="inline-flex items-center bg-green-600 text-white px-3 py-1 text-sm font-semibold absolute top-0 left-2 rounded shadow z-10">
+          Veg
+          <div className="w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-l-8 border-l-green-600 absolute -right-2"></div>
+        </div>
+        <RestaurantCrad {...props} />
+      </div>
+    );
+  };
+};
+
 export default RestaurantCrad;
