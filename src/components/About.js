@@ -5,14 +5,14 @@ import React from "react";
 class About extends React.Component {
   constructor(props) {
     super(props);
-    console.log("constructor of about is callsed");
+    // console.log("constructor of about is callsed");
   }
 
   componentDidMount() {
-    console.log("componentDidMount of about is callsed");
+    // console.log("componentDidMount of about is callsed");
   }
   render() {
-    console.log("render of about is callsed");
+    // console.log("render of about is callsed");
     return (
       <div className="about">
         <h2>About User:</h2>

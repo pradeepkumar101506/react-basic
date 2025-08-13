@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import { LOGO_URL } from "../utils/constants";
 
 import { NavLink } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [buttonLabel, setbuttonLabel] = useState("Login");
   const isOnline = useOnlineStatus();
+
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     console.log("Header is called");
@@ -22,7 +25,7 @@ const Header = () => {
         />
       </div>
       <div className="flex items-center">
-        <ul className="flex p-4 m-4">
+        <ul className="flex p-4 m-4 items-center">
           <li className="px-4">
             <span
               className={`inline-block w-3 h-3 rounded-full ${
@@ -85,14 +88,24 @@ const Header = () => {
             className="px-4"
             onClick={() => {
               if (buttonLabel === "Login") {
+                setUser("Mahi");
                 setbuttonLabel("Logout");
               } else {
+                setUser("Default User");
                 setbuttonLabel("Login");
               }
             }}
           >
             {buttonLabel}
           </button>
+          <li className="flex items-center ml-4">
+            <img
+              src="https://randomuser.me/api/portraits/women/44.jpg"
+              alt="User"
+              className="w-10 h-10 rounded-full border-2 border-blue-400 object-cover mr-2"
+            />
+            <span>{user}</span>
+          </li>
         </ul>
       </div>
     </div>

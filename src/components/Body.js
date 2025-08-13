@@ -1,10 +1,11 @@
 import RestaurantCrad, { withVegLabel } from "./RestaurantCrad";
 
-import { use, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useFetchRestaurants from "../utils/useFetchRestaurants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurant, setlistOfRestaurant] = useState([]);
@@ -75,6 +76,7 @@ const Body = () => {
             </button>
           </div>
         </div>
+
         <div className="flex items-center gap-2 ml-4">
           <input
             type="text"

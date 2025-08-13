@@ -1,9 +1,10 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 
-const ResCategory = ({ data }) => {
-  const [showItems, setShowItems] = useState(true);
-
+const ResCategory = ({ data, showItems, setShowIndex }) => {
+  const handleClick = () => {
+    setShowIndex();
+  };
   return (
     <div className="m-4 p-4 rounded-lg h-auto">
       <div className="flex justify-between items-center shadow-2xl">
@@ -17,7 +18,7 @@ const ResCategory = ({ data }) => {
         </div>
         <div
           className="text-lg font-semibold cursor-pointer"
-          onClick={() => setShowItems((prev) => !prev)}
+          onClick={handleClick}
         >
           {/* Down arrow using Tailwind and SVG */}
           <svg
